@@ -26,7 +26,7 @@ if (false) {
     setText("completedCount", total);
     setText("bestScore", total ? `${avg}% avg` : "—");
   });
-}
+}setText("totalAttempts", getNum("totalAttempts"));
   const grid = document.getElementById("quizGrid");
   if (!grid) return;
 
