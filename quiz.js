@@ -149,3 +149,4 @@ function finishQuiz() {
     </div>
   `).join("");
 }
+}
