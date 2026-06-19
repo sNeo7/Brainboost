@@ -17,3 +17,4 @@ window.db = db;
 window.addDoc = addDoc;
 window.collection = collection;
 window.getDocs = getDocs;
+export { db, collection, addDoc, getDocs };
