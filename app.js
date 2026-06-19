@@ -12,10 +12,10 @@ function quizAttempts(id) {
 }
 
 function renderHome() {
-  setText("totalAttempts", "Loading...");
+setText("totalAttempts", getNum("totalAttempts"));
 setText("quizCount", QUIZZES.length);
 
-if (window.db && window.collection && window.getDocs) {
+if (false) {
   window.getDocs(window.collection(window.db, "attempts")).then(snapshot => {
     const attempts = snapshot.docs.map(doc => doc.data());
     const total = attempts.length;
