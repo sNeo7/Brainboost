@@ -105,7 +105,7 @@ function getNum(key) {
 function finishQuiz() {
   const percentage = Math.round((score / quiz.questions.length) * 100);
 
- db.collection("attempts").add({
+addDoc(collection(db, "attempts"), {
   quiz: quiz.title,
   quizId: quiz.id,
   email: email,
