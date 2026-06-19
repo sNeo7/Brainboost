@@ -1,3 +1,4 @@
+import { db, collection, getDocs } from "./firebase.js";
 function getNum(key) {
   return parseInt(localStorage.getItem(key) || "0", 10);
 }
@@ -15,12 +16,19 @@ function renderHome() {
 setText("totalAttempts", getNum("totalAttempts"));
 setText("quizCount", QUIZZES.length);
 
-if (false) {
-  window.getDocs(window.collection(window.db, "attempts")).then(snapshot => {
-    const attempts = snapshot.docs.map(doc => doc.data());
-    const total = attempts.length;
-    const emails = new Set(attempts.map(a => a.email).filter(Boolean));
-    const avg = total ? Math.round(attempts.reduce((sum, a) => sum + Number(a.score || 0), 0) / total) : 0;
+getDocs(collection(db, "attempts")).then(snapshot => {
+  const attempts = snapshot.docs.map(doc => doc.data());
+
+  const totalTaken = attempts.length;
+  const users = new Set(attempts.map(a => a.email).filter(Boolean)).size;
+  const averageScore = totalTaken
+    ? Math.round(attempts.reduce((sum, a) => sum + Number(a.score || 0), 0) / totalTaken)
+    : 0;
+
+  setText("totalAttempts", totalTaken);
+  setText("completedCount", users);
+  setText("bestScore", totalTaken ? `${averageScore}% avg` : "—");
+});
 
     setText("totalAttempts", total);
     setText("completedCount", total);
