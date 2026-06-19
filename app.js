@@ -28,7 +28,6 @@ function renderHome() {
     setText("totalAttempts", totalTaken);
     setText("completedCount", users);
     setText("bestScore", totalTaken ? `${averageScore}% avg` : "—");
-  });
 
   const grid = document.getElementById("quizGrid");
   if (!grid) return;
@@ -48,6 +47,7 @@ function renderHome() {
       <a class="button primary full" href="quiz.html?id=${quiz.id}">Start test</a>
     </article>
   `).join("");
-}
+ });
+  }
 
 renderHome();
