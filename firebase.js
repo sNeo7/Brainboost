@@ -1,3 +1,6 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBOK2kQv1IThyAbQ_Ym8y1pDHsXmvdkNXs",
   authDomain: "brainboost-5c838.firebaseapp.com",
@@ -8,5 +11,7 @@ const firebaseConfig = {
   measurementId: "G-ZWRBB1Q827"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.db = db;
