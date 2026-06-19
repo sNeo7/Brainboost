@@ -105,13 +105,15 @@ function getNum(key) {
 function finishQuiz() {
   const percentage = Math.round((score / quiz.questions.length) * 100);
 
-addDoc(collection(window.db, "attempts"), {
-  quiz: quiz.title,
-  quizId: quiz.id,
-  email: email,
-  score: percentage,
-  date: new Date().toISOString()
-});
+if (window.db && window.addDoc && window.collection) {
+  window.addDoc(window.collection(window.db, "attempts"), {
+    quiz: quiz.title,
+    quizId: quiz.id,
+    email: email,
+    score: percentage,
+    date: new Date().toISOString()
+  });
+}
 
   const history = JSON.parse(localStorage.getItem("attemptHistory") || "[]");
   history.push({
